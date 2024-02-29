@@ -2,7 +2,7 @@ using SiJwtAuth.Api.Dto.Command;
 using SiJwtAuth.Data.Models;
 using SiJwtAuth.Data.Repositories;
 
-namespace SiJwtAuth.Application.Services.impl;
+namespace SiJwtAuth.Application.Services.Impl;
 
 public class UserAuthService(IUsersRepository repository) : IUserAuthService
 {

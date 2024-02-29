@@ -5,7 +5,7 @@ using SiJwtAuth.Application.Utils;
 using SiJwtAuth.Data.Models;
 using SiJwtAuth.Data.Repositories;
 
-namespace SiJwtAuth.Application.Services.impl;
+namespace SiJwtAuth.Application.Services.Impl;
 
 public class TokenService(
     SecurityTokenHandler tokenHandler,
@@ -14,7 +14,6 @@ public class TokenService(
     IConfiguration conf)
     : ITokenService
 {
-    private const string RefreshTokenClaim = "refresh_token";
     private const string JwtKeyConfigKey = "Jwt:Key";
     private const string JwtIssuerConfigKey = "Jwt:Issuer";
 
