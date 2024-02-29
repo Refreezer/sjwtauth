@@ -1,11 +1,17 @@
 using Microsoft.EntityFrameworkCore;
-using SiJwtAuth.Dao.Models;
+using SiJwtAuth.Data.Models;
 
-namespace SiJwtAuth.Dao;
+namespace SiJwtAuth.Data;
 
-public class AuthContext(DbContextOptions opt) : DbContext(opt)
+public sealed class AuthContext : DbContext
 {
-    public DbSet<User> Users { get; set; }
+    public AuthContext(DbContextOptions opt) : base(opt)
+    {
+        Database.EnsureCreated();
+    }
+
+    public DbSet<User> Users { get; set; } = null!;
+    public DbSet<Tokens> Tokens { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
