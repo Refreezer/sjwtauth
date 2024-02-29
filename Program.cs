@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using SiJwtAuth;
 using SiJwtAuth.Application.Services;
-using SiJwtAuth.Application.Services.impl;
+using SiJwtAuth.Application.Services.Impl;
 using SiJwtAuth.Application.Utils;
 using SiJwtAuth.Application.Utils.Impl;
 using SiJwtAuth.Data;
