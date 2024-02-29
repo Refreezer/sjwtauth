@@ -1,0 +1,39 @@
+services:
+  sjwtauth-db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=sjwtauth
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+    ports:
+      - 5432:5432
+    volumes:
+      - psql-auth-vol:/var/lib/postgresql/data
+    networks:
+      - aspnetcoreapp-network
+
+  sjwtauth:
+    image: sjwtauth
+    ports:
+      - 8080:8080
+    depends_on:
+      - sjwtauth-db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - AuthDb=Host=sjwtauth-db; Database=sjwtauth; Username=postgres; Password=admin
+      - token_lifetime=1m
+    networks:
+      - aspnetcoreapp-network
+
+
+volumes:
+  psql-auth-vol:
+    name: psql-auth-vol
+    external: true
+networks:
+  aspnetcoreapp-network:
+    driver: bridge
